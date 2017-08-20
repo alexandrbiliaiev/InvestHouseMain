@@ -22,7 +22,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Theme CSS -->
-    <link href="css/agency.min.css" rel="stylesheet">
+    <link href="css/agency.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -53,16 +53,16 @@
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#invest">Inwestycje zrealizowane</a>
+                        <a class="page-scroll" href="#invest-done">Inwestycje zrealizowane</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#invest-in-progress">Inwestycje w trakcie realizacji</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#aboutus">O nas</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#about">Aktualności</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#team">Inwestycje w trakcie realizacji</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">Kontakt</a>
@@ -80,66 +80,58 @@
             <div class="intro-text">
                 <div class="intro-lead-in">Invest House</div>
                 <div class="intro-heading">Budujemy Twoje Marzenia</div>
-                <a href="#invest" class="page-scroll btn btn-xl">Przejdź dalej</a>
+                <a href="#invest-done" class="page-scroll btn btn-xl">Przejdź dalej</a>
             </div>
         </div>
     </header>
 
     <!-- Section -->
-    <section id="invest">
+    <section id="invest-done">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2 class="invest-heading">Inwestycje zrealizowane</h2>
-                    <h3 class="section-subheading text-muted">Bla bla bla bla</h3>
+                    <hr/>
                 </div>
             </div>
             <div class="row text-center">
-                <div class="col-md-4" ng-repeat="investment in investments">
+                <div class="col-md-4" ng-repeat="investment in investments" ng-show="investment.done == true">
                     <span class="fa-stack fa-4x">
-                        <img src="{{investment.logo}}" class="img-thumbnail" alt="Logo" >
+                        <a href="{{investment.link}}" target="blank">
+                        <img src="{{investment.logo}}"  class="img-thumbnail" alt="Logo" >
+                        </a>
                     </span>
                     <h4 class="service-heading">{{investment.name}}</h4>
                     <p class="text-muted">{{investment.description}}</p>
                 </div>
-               <!-- <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <img src="jurajskie_logo.jpg" class="img-thumbnail" alt="Logo" width="304" height="236">
-                    </span>
-                    <h4 class="service-heading">Jurajskie Wzgórze</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore
-                        harum ex magni, dicta impedit.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="invest-in-progress">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="invest-heading">Inwestycje w trakcie realizacji</h2>
+                  <hr/>
                 </div>
-                <div class="col-md-4">
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4" ng-repeat="investment in investments" ng-show="investment.done == false">
                     <span class="fa-stack fa-4x">
-                        <img src="jw2.jpg" class="img-thumbnail" alt="Logo" width="304" height="236">
+                        <a href="{{investment.link}}" target="blank">
+                        <img src="{{investment.logo}}"  class="img-thumbnail" alt="Logo" >
+                        </a>
                     </span>
-                    <h4 class="service-heading">Jurajskie Wzgórze II</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore
-                        harum ex magni, dicta impedit.</p>
+                    <h4 class="service-heading">{{investment.name}}</h4>
+                    <p class="text-muted">{{investment.description}}</p>
                 </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <img src="lesna_logo.jpg" class="img-thumbnail" alt="Logo" width="304" height="236">
-                    </span>
-                    <h4 class="service-heading">Leśna Dolina</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore
-                        harum ex magni, dicta impedit.</p>
-                </div>
-                <div class="col-md-4">
-                    <span class="fa-stack fa-4x">
-                        <img src="wrzosowa.png" class="img-thumbnail" alt="Logo" width="304" height="236">
-                    </span>
-                    <h4 class="service-heading">Wrzosowa 1</h4>
-                    <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore
-                        harum ex magni, dicta impedit.</p>
-                </div> -->
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="aboutus" class="bg-light-gray">
+    <section id="aboutus" class="bg-light-gray" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
