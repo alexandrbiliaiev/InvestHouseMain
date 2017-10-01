@@ -1,6 +1,6 @@
 {
   "name": "ngQuill",
-  "version": "3.2.0",
+  "version": "3.4.0",
   "main": [
     "dist/ng-quill.min.js"
   ],
@@ -31,14 +31,14 @@
   ],
   "license": "MIT",
   "homepage": "https://github.com/KillerCodeMonkey/ngQuill",
-  "_release": "3.2.0",
+  "_release": "3.4.0",
   "_resolution": {
     "type": "version",
-    "tag": "3.2.0",
-    "commit": "9c355192c01d1db485e0f521c1a8d6b4c41b49ef"
+    "tag": "3.4.0",
+    "commit": "935fcdab403d92f3d4a7ea002ecc5f7e56438982"
   },
   "_source": "https://github.com/KillerCodeMonkey/ngQuill.git",
-  "_target": "^3.2.0",
+  "_target": "^3.4.0",
   "_originalSource": "ngquill",
   "_direct": true
 }

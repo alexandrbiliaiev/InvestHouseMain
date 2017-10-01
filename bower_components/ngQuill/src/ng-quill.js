@@ -1,7 +1,7 @@
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['quill'], factory)
-  } else if (typeof exports === 'object') {
+  } else if (typeof module !== 'undefined' && typeof exports === 'object') {
     module.exports = factory(require('quill'))
   } else {
     root.Requester = factory(root.Quill)
@@ -53,8 +53,8 @@
       if (customConf.theme) {
         config.theme = customConf.theme
       }
-      if (customConf.placeholder) {
-        config.placeholder = customConf.placeholder
+      if (customConf.placeholder !== null && customConf.placeholder !== undefined) {
+        config.placeholder = customConf.placeholder.trim()
       }
       if (customConf.bounds) {
         config.bounds = customConf.bounds
@@ -80,6 +80,8 @@
       'formats': '<?',
       'placeholder': '@?',
       'bounds': '<?',
+      'scrollingContainer': '<?',
+      'scrict': '<?',
       'onEditorCreated': '&?',
       'onContentChanged': '&?',
       'onSelectionChanged': '&?',
@@ -101,6 +103,7 @@
       var modelChanged = false
       var editorChanged = false
       var editor
+      var placeholder = ngQuillConfig.placeholder
 
       this.validate = function (text) {
         if (this.maxLength) {
@@ -128,7 +131,7 @@
           if (editor && !editorChanged) {
             modelChanged = true
             if (content) {
-              editor.pasteHTML(content)
+              editor.setContents(editor.clipboard.convert(content))
             } else {
               editor.setText('')
             }
@@ -142,13 +145,19 @@
       }
 
       this.$onInit = function () {
+        if (this.placeholder !== null && this.placeholder !== undefined) {
+          placeholder = this.placeholder.trim()
+        }
+
         config = {
           theme: this.theme || ngQuillConfig.theme,
           readOnly: this.readOnly || ngQuillConfig.readOnly,
           modules: this.modules || ngQuillConfig.modules,
           formats: this.formats || ngQuillConfig.formats,
-          placeholder: this.placeholder || ngQuillConfig.placeholder,
-          bounds: this.bounds || ngQuillConfig.bounds
+          placeholder: placeholder,
+          bounds: this.bounds || ngQuillConfig.bounds,
+          strict: this.strict,
+          scrollingContainer: this.scrollingContainer
         }
       }
 
@@ -230,7 +239,9 @@
         if (content) {
           modelChanged = true
 
-          editor.pasteHTML(content)
+          var contents = editor.clipboard.convert(content)
+          editor.setContents(contents)
+          editor.history.clear()
         }
 
         // provide event to get informed when editor is created -> pass editor object.
@@ -240,4 +251,6 @@
       }
     }]
   })
+
+  return app.name
 }))
